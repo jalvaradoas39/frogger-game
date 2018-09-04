@@ -14,16 +14,29 @@ var Engine = (function(global) {
 
 	function init() {
 		// reset();
+		lastTime = Date.now();
 		main();
 	}
-
 	// function reset() {}
 
 	function main() {
+		let now = Date.now();
+		let dt = (now - lastTime) / 1000.0;
+
+		update(dt);
 
 	}
 
+	function update(dt) {
+		updateEntities(dt);
+		// checkCollisions();
+	}
+	// function checkCollisions() {}
 
+	function updateEntities(dt) {
+		// allEnemies[] retrieved via app.js
+		//console.log(allEnemies);
+	}
 
 
 
