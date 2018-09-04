@@ -40,3 +40,12 @@ Player.prototype.handleInput = function(/* keyPressed */) {
 
 };
 
+
+
+// ****** CREATE OBJECTS ******
+
+// create Player object
+let player = new Player();
+// create Enemy object
+let bug = new Enemy();
+
