@@ -21,5 +21,22 @@ Enemy.prototype.render = function() {
 
 
 
+// ****** PLAYER ******
 
+// constructor
+let Player = function() {
+
+};
+
+Player.prototype.update = function() {
+
+};
+
+Player.prototype.render = function() {
+
+};
+
+Player.prototype.handleInput = function(/* keyPressed */) {
+
+};
 
