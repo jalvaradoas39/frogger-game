@@ -7,6 +7,9 @@ let allEnemies = [];
 let Enemy = function() {
 	this.ctx = window.ctx;
 	this.sprite = 'images/enemy-bug.png';
+	// add position coordinates for enemy
+	this.x = 100;
+	this.y = 0;
 
 };
 
@@ -17,7 +20,7 @@ Enemy.prototype.update = function(dt) {
 Enemy.prototype.render = function() {
 	// draw enemy onto board
 	ctx.drawImage( Resources.get(this.sprite), this.x, this.y );	
-	
+
 };
 
 
