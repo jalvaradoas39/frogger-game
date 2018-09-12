@@ -19,6 +19,7 @@ var Engine = (function(global) {
 	}
 	// function reset() {}
 
+
 	function main() {
 		let now = Date.now();
 		let dt = (now - lastTime) / 1000.0;
@@ -27,16 +28,24 @@ var Engine = (function(global) {
 
 	}
 
+
 	function update(dt) {
 		updateEntities(dt);
 		// checkCollisions();
 	}
 	// function checkCollisions() {}
 
+
 	function updateEntities(dt) {
 		// allEnemies[] retrieved via app.js
-		//console.log(allEnemies);
+		allEnemies.forEach(function(enemy) {
+			// update each enemy object
+			enemy.update(dt);
+		});
+		// update player object
+		player.update();
 	}
+
 
 
 

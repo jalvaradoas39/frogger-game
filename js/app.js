@@ -15,7 +15,7 @@ Enemy.prototype.update = function(dt) {
 };
 
 Enemy.prototype.render = function() {
-	// ctx.drawImage();
+
 };
 
 
@@ -47,5 +47,13 @@ Player.prototype.handleInput = function(/* keyPressed */) {
 // create Player object
 let player = new Player();
 // create Enemy object
-let bug = new Enemy();
+let bug1 = new Enemy();
+let bug2 = new Enemy();
+
+
+// push enemy object into allEnemies array
+allEnemies.push(bug1);
+allEnemies.push(bug2);
+
+
 
