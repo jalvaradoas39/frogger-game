@@ -4,12 +4,12 @@ let allEnemies = [];
 // ****** ENEMY ******
 
 // constructor
-let Enemy = function() {
+let Enemy = function(enemyImgURL, startXPos, startYPos) {
 	this.ctx = window.ctx;
-	this.sprite = 'images/enemy-bug.png';
+	this.sprite = enemyImgURL;
 	// add position coordinates for enemy
-	this.x = 100;
-	this.y = 0;
+	this.x = startXPos;
+	this.y = startYPos;
 
 };
 
@@ -54,8 +54,8 @@ Player.prototype.handleInput = function(/* keyPressed */) {
 // create Player object
 let player = new Player('images/char-boy.png', 300, 200);
 // create Enemy object
-let bug1 = new Enemy();
-let bug2 = new Enemy();
+let bug1 = new Enemy('images/enemy-bug.png', 100, 0);
+let bug2 = new Enemy('images/enemy-bug.png', 180, 200);
 
 
 // push enemy object into allEnemies array
