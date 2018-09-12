@@ -25,7 +25,7 @@ var Engine = (function(global) {
 		let dt = (now - lastTime) / 1000.0;
 
 		update(dt);
-
+		render();
 	}
 
 
@@ -47,7 +47,46 @@ var Engine = (function(global) {
 	}
 
 
+	// renders game board
+	function render() {
+		var rowImages = [
+			'images/water-block.png',
+			'images/stone-block.png',
+			'images/stone-block.png',
+			'images/stone-block.png',
+			'images/grass-block.png',
+			'images/grass-block.png'
+		];
+		var numRows = 6;
+		var numCols = 5;
+		var row;
+		var col;
 
+		// clear canvas before drawing
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		// loop to draw rows and columns of images
+		for (row = 0; row < numRows; row++) {
+
+			for (col = 0; col < numCols; col++) {
+				// drawImage(imageURL, x coord to start, y coord to start)
+				ctx.drawImage( Resources.get(rowImages[row]), col*101, row*83 );
+			}
+
+		}
+
+		renderEntities();
+	}
+
+
+	// renders enemies and player
+	function renderEntities() {
+		allEnemies.forEach(function(enemy) {
+			enemy.render();
+		});
+
+	}
+
+	
 
 
 	Resources.load([
