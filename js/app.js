@@ -29,8 +29,10 @@ Enemy.prototype.render = function() {
 // ****** PLAYER ******
 
 // constructor
-let Player = function() {
-
+let Player = function(playerImgURL, startXPos, startYPos) {
+	this.sprite = playerImgURL;
+	this.x = startXPos;
+	this.y = startYPos;
 };
 
 Player.prototype.update = function() {
@@ -38,7 +40,7 @@ Player.prototype.update = function() {
 };
 
 Player.prototype.render = function() {
-
+	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 Player.prototype.handleInput = function(/* keyPressed */) {
@@ -50,7 +52,7 @@ Player.prototype.handleInput = function(/* keyPressed */) {
 // ****** CREATE OBJECTS ******
 
 // create Player object
-let player = new Player();
+let player = new Player('images/char-boy.png', 300, 200);
 // create Enemy object
 let bug1 = new Enemy();
 let bug2 = new Enemy();
