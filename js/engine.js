@@ -26,6 +26,10 @@ var Engine = (function(global) {
 
 		update(dt);
 		render();
+
+		lastTime = now;
+		
+		win.requestAnimationFrame(main);
 	}
 
 
