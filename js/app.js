@@ -48,8 +48,23 @@ Player.prototype.render = function() {
 	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-Player.prototype.handleInput = function(keyPressed) {
-	console.log(keyPressed);
+Player.prototype.handleInput = function(keyCode) {
+	
+	switch(keyCode) {
+		case 37:
+			this.x -= 101;
+			break;
+		case 38:
+			this.y -= 83;
+			break;
+		case 39:
+			this.x += 101;
+			break;
+		case 40:
+			this.y += 83;
+			break;
+	}
+
 };
 
 
@@ -95,27 +110,8 @@ setInterval(function() {
 
 // ****** EVENT LISTENERS ******
 document.addEventListener('keydown', function(evt) {
-	
 	let keyCode = evt.keyCode;
-	let keyPressed;
-
-	switch(keyCode) {
-		case 37:
-			keyPressed = 'left';
-			break;
-		case 38:
-			keyPressed = 'up';
-			break;
-		case 39:
-			keyPressed = 'right';
-			break;
-		case 40:
-			keyPressed = 'down';
-			break;
-	}
-
-	player.handleInput(keyPressed);
-
+	player.handleInput(keyCode);
 }, false);
 
 
