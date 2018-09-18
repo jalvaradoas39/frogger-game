@@ -27,6 +27,9 @@ Enemy.prototype.render = function() {
 
 
 
+
+
+
 // ****** PLAYER ******
 
 // constructor
@@ -36,6 +39,7 @@ let Player = function(playerImgURL, startXPos, startYPos) {
 	this.y = startYPos;
 };
 
+
 Player.prototype.update = function() {
 
 };
@@ -44,16 +48,21 @@ Player.prototype.render = function() {
 	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-Player.prototype.handleInput = function(/* keyPressed */) {
-	
+Player.prototype.handleInput = function(keyPressed) {
+	console.log(keyPressed);
 };
+
+
+
+
 
 
 
 // ****** CREATE OBJECTS ******
 
 // create Player object
-let player = new Player('images/char-boy.png', 300, 200);
+let player = new Player('images/char-boy.png', 200, 403);
+
 
 
 /*
@@ -76,6 +85,40 @@ setInterval(function() {
 	// add enemies to allEnemies array
 	allEnemies.push(bug);
 }, 4000);
+
+
+
+
+
+
+
+
+// ****** EVENT LISTENERS ******
+document.addEventListener('keydown', function(evt) {
+	
+	let keyCode = evt.keyCode;
+	let keyPressed;
+
+	switch(keyCode) {
+		case 37:
+			keyPressed = 'left';
+			break;
+		case 38:
+			keyPressed = 'up';
+			break;
+		case 39:
+			keyPressed = 'right';
+			break;
+		case 40:
+			keyPressed = 'down';
+			break;
+	}
+
+	player.handleInput(keyPressed);
+
+}, false);
+
+
 
 
 
