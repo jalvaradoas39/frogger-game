@@ -7,9 +7,10 @@ let allEnemies = [];
 let Enemy = function(enemyImgURL, startXPos, startYPos, speed) {
 	this.ctx = window.ctx;
 	this.sprite = enemyImgURL;
-	// add position coordinates for enemy
+	// add starting position coordinates
 	this.x = startXPos;
 	this.y = startYPos;
+	// add speed
 	this.speed = speed;
 
 };
@@ -20,8 +21,7 @@ Enemy.prototype.update = function(dt) {
 
 Enemy.prototype.render = function() {
 	// draw enemy onto board
-	ctx.drawImage( Resources.get(this.sprite), this.x, this.y );	
-
+	ctx.drawImage( Resources.get(this.sprite), this.x, this.y );
 };
 
 
@@ -45,7 +45,7 @@ Player.prototype.render = function() {
 };
 
 Player.prototype.handleInput = function(/* keyPressed */) {
-
+	
 };
 
 
@@ -54,14 +54,28 @@ Player.prototype.handleInput = function(/* keyPressed */) {
 
 // create Player object
 let player = new Player('images/char-boy.png', 300, 200);
+
+
+/*
+	- All 3 values in enemyYPos are Y position rows where stone-blocks are drawn from. We divide 83
+	  which is the height of the stones by 2 to get the mid-section of the stones, then subtract it
+	  from each value in the enemyYPos array. Newly calculated values are added to enemyYPos array.
+	- Optionally, we could just subtract 41.5(half of 83) from all 3 values:
+	  let enemyYPos = [41.5, 124.5, 207.5]
+*/
+let enemyYPos = [83, 166, 249].map(function(val) {
+	return val - (83/2);
+});
+
 // create Enemy object
-let bug1 = new Enemy('images/enemy-bug.png', 100, 0, 50);
-let bug2 = new Enemy('images/enemy-bug.png', 180, 200, 110);
-
-
-// push enemy object into allEnemies array
-allEnemies.push(bug1);
-allEnemies.push(bug2);
+setInterval(function() {
+	// select random value from enemyYPos array
+	let randY = enemyYPos[ Math.floor((Math.random() * enemyYPos.length)) ];
+	// create enemies
+	let bug = new Enemy('images/enemy-bug.png', -140, randY, 50);
+	// add enemies to allEnemies array
+	allEnemies.push(bug);
+}, 4000);
 
 
 

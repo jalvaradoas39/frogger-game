@@ -75,7 +75,6 @@ var Engine = (function(global) {
 				// drawImage(imageURL, x coord to start, y coord to start)
 				ctx.drawImage( Resources.get(rowImages[row]), col*101, row*83 );
 			}
-
 		}
 
 		renderEntities();
