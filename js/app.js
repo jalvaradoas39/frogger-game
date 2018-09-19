@@ -41,7 +41,19 @@ let Player = function(playerImgURL, startXPos, startYPos) {
 
 
 Player.prototype.update = function() {
-
+	// left collision
+	if (this.x < 0) {
+		this.x = 0;
+	// right collision
+	} else if (this.x > 400) {
+		this.x = 400;
+	// top collision
+	} else if (this.y < -10) {
+		this.y = -10;
+	// bottom collision
+	} else if (this.y > 400) {
+		this.y = 400;
+	}
 };
 
 Player.prototype.render = function() {
@@ -49,17 +61,23 @@ Player.prototype.render = function() {
 };
 
 Player.prototype.handleInput = function(keyCode) {
-	
+
+	let canvas = document.getElementsByTagName('canvas');
+	console.log(canvas);
 	switch(keyCode) {
+		// left
 		case 37:
 			this.x -= 101;
 			break;
+		// up
 		case 38:
 			this.y -= 83;
 			break;
+		// right
 		case 39:
 			this.x += 101;
 			break;
+		// down
 		case 40:
 			this.y += 83;
 			break;
@@ -76,7 +94,7 @@ Player.prototype.handleInput = function(keyCode) {
 // ****** CREATE OBJECTS ******
 
 // create Player object
-let player = new Player('images/char-boy.png', 200, 403);
+let player = new Player('images/char-boy.png', 200, 400);
 
 
 
