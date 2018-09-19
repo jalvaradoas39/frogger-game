@@ -62,8 +62,6 @@ Player.prototype.render = function() {
 
 Player.prototype.handleInput = function(keyCode) {
 
-	let canvas = document.getElementsByTagName('canvas');
-	console.log(canvas);
 	switch(keyCode) {
 		// left
 		case 37:
@@ -105,7 +103,7 @@ let player = new Player('images/char-boy.png', 200, 400);
 	- Optionally, we could just subtract 41.5(half of 83) from all 3 values:
 	  let enemyYPos = [41.5, 124.5, 207.5]
 */
-let enemyYPos = [83, 166, 249].map(function(val) {
+let enemyYPos = [98, 181, 264].map(function(val) {
 	return val - (83/2);
 });
 
