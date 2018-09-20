@@ -10,13 +10,26 @@ let Enemy = function(enemyImgURL, startXPos, startYPos, speed) {
 	// add starting position coordinates
 	this.x = startXPos;
 	this.y = startYPos;
+	this.w = 75;
+	this.h = 25;
 	// add speed
 	this.speed = speed;
-
 };
 
 Enemy.prototype.update = function(dt) {
 	this.x += dt * this.speed;
+
+	// collision detection between player and enemy
+	if (this.x < player.x + player.w &&
+		this.x + this.w > player.x &&
+		this.y < player.y + player.h &&
+		this.y + this.h > player.y 
+	) {
+		// reset player to start position
+		player.x = 200;
+		player.y = 400;
+	}
+
 };
 
 Enemy.prototype.render = function() {
@@ -37,6 +50,8 @@ let Player = function(playerImgURL, startXPos, startYPos) {
 	this.sprite = playerImgURL;
 	this.x = startXPos;
 	this.y = startYPos;
+	this.w = 80;
+	this.h = 30;
 };
 
 
@@ -54,6 +69,8 @@ Player.prototype.update = function() {
 	} else if (this.y > 400) {
 		this.y = 400;
 	}
+
+
 };
 
 Player.prototype.render = function() {
@@ -103,6 +120,7 @@ let player = new Player('images/char-boy.png', 200, 400);
 	- Optionally, we could just subtract 41.5(half of 83) from all 3 values:
 	  let enemyYPos = [41.5, 124.5, 207.5]
 */
+// set enemy positions
 let enemyYPos = [98, 181, 264].map(function(val) {
 	return val - (83/2);
 });
@@ -112,7 +130,7 @@ setInterval(function() {
 	// select random value from enemyYPos array
 	let randY = enemyYPos[ Math.floor((Math.random() * enemyYPos.length)) ];
 	// create enemies
-	let bug = new Enemy('images/enemy-bug.png', -140, randY, 50);
+	let bug = new Enemy('images/enemy-bug.png', -140, randY, 90);
 	// add enemies to allEnemies array
 	allEnemies.push(bug);
 }, 4000);

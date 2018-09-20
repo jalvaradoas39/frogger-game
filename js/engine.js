@@ -4,6 +4,7 @@ var Engine = (function(global) {
 	let doc = global.document;
 	let canvas = doc.createElement('canvas');
 	let ctx = canvas.getContext('2d');
+
 	let lastTime;
 
 	canvas.width = 505;
