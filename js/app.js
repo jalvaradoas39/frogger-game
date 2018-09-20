@@ -19,6 +19,15 @@ let Enemy = function(enemyImgURL, startXPos, startYPos, speed) {
 Enemy.prototype.update = function(dt) {
 	this.x += dt * this.speed;
 
+	this.checkCollision();
+};
+
+Enemy.prototype.render = function() {
+	// draw enemy onto board
+	ctx.drawImage( Resources.get(this.sprite), this.x, this.y );
+};
+
+Enemy.prototype.checkCollision = function () {
 	// collision detection between player and enemy
 	if (this.x < player.x + player.w &&
 		this.x + this.w > player.x &&
@@ -29,15 +38,7 @@ Enemy.prototype.update = function(dt) {
 		player.x = 200;
 		player.y = 400;
 	}
-
 };
-
-Enemy.prototype.render = function() {
-	// draw enemy onto board
-	ctx.drawImage( Resources.get(this.sprite), this.x, this.y );
-};
-
-
 
 
 
