@@ -44,6 +44,8 @@ Enemy.prototype.checkCollision = function () {
 
 
 
+
+
 // ****** PLAYER ******
 
 // constructor
@@ -71,15 +73,22 @@ Player.prototype.update = function() {
 		this.y = 400;
 	}
 
-
+	this.checkEndGame();
 };
 
 Player.prototype.render = function() {
 	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-Player.prototype.handleInput = function(keyCode) {
+Player.prototype.checkEndGame = function () {
+	if (this.y <= 0) {
+		let modalContainer = document.getElementById('modal-container');
+		modalContainer.classList.remove('hide');
+		modalContainer.classList.add('show');
+	}
+};
 
+Player.prototype.handleInput = function(keyCode) {
 	switch(keyCode) {
 		// left
 		case 37:
@@ -98,8 +107,8 @@ Player.prototype.handleInput = function(keyCode) {
 			this.y += 83;
 			break;
 	}
-
 };
+
 
 
 
@@ -143,12 +152,12 @@ setInterval(function() {
 
 
 
+
 // ****** EVENT LISTENERS ******
 document.addEventListener('keydown', function(evt) {
 	let keyCode = evt.keyCode;
 	player.handleInput(keyCode);
 }, false);
-
 
 
 
