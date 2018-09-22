@@ -9,6 +9,7 @@ var Engine = (function(global) {
 
 	canvas.width = 505;
 	canvas.height = 606;
+	canvas.id = 'canvas';
 	doc.body.appendChild(canvas);
 
 
@@ -36,10 +37,8 @@ var Engine = (function(global) {
 
 	function update(dt) {
 		updateEntities(dt);
-		// checkCollisions();
 	}
-	// function checkCollisions() {}
-
+	
 
 	function updateEntities(dt) {
 		// allEnemies[] retrieved via app.js
@@ -52,7 +51,7 @@ var Engine = (function(global) {
 	}
 
 
-	// renders game board
+	// renders game board, enemies and player
 	function render() {
 		var rowImages = [
 			'images/water-block.png',

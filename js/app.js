@@ -1,5 +1,11 @@
 // storage for enemy objects
 let allEnemies = [];
+// modal window access needed when game ends
+let modalContainer = document.getElementById('modal-container');
+
+
+
+
 
 // ****** ENEMY ******
 
@@ -19,7 +25,7 @@ let Enemy = function(enemyImgURL, startXPos, startYPos, speed) {
 Enemy.prototype.update = function(dt) {
 	this.x += dt * this.speed;
 
-	this.checkCollision();
+	this.checkPlayerCollision();
 };
 
 Enemy.prototype.render = function() {
@@ -27,7 +33,7 @@ Enemy.prototype.render = function() {
 	ctx.drawImage( Resources.get(this.sprite), this.x, this.y );
 };
 
-Enemy.prototype.checkCollision = function () {
+Enemy.prototype.checkPlayerCollision = function () {
 	// collision detection between player and enemy
 	if (this.x < player.x + player.w &&
 		this.x + this.w > player.x &&
@@ -59,6 +65,12 @@ let Player = function(playerImgURL, startXPos, startYPos) {
 
 
 Player.prototype.update = function() {
+	this.checkWallCollision();
+	this.checkEndGame();
+};
+
+
+Player.prototype.checkWallCollision = function() {
 	// left collision
 	if (this.x < 0) {
 		this.x = 0;
@@ -72,9 +84,8 @@ Player.prototype.update = function() {
 	} else if (this.y > 400) {
 		this.y = 400;
 	}
-
-	this.checkEndGame();
 };
+
 
 Player.prototype.render = function() {
 	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -82,7 +93,7 @@ Player.prototype.render = function() {
 
 Player.prototype.checkEndGame = function () {
 	if (this.y <= 0) {
-		let modalContainer = document.getElementById('modal-container');
+		// show modal window
 		modalContainer.classList.remove('hide');
 		modalContainer.classList.add('show');
 	}
@@ -116,11 +127,18 @@ Player.prototype.handleInput = function(keyCode) {
 
 
 
+
+
+
+
+
+
+
+
 // ****** CREATE OBJECTS ******
 
 // create Player object
 let player = new Player('images/char-boy.png', 200, 400);
-
 
 
 /*
@@ -140,9 +158,9 @@ setInterval(function() {
 	// select random value from enemyYPos array
 	let randY = enemyYPos[ Math.floor((Math.random() * enemyYPos.length)) ];
 	// create enemies
-	let bug = new Enemy('images/enemy-bug.png', -140, randY, 90);
+	let enemy = new Enemy('images/enemy-bug.png', -140, randY, 90);
 	// add enemies to allEnemies array
-	allEnemies.push(bug);
+	allEnemies.push(enemy);
 }, 4000);
 
 
@@ -158,6 +176,7 @@ document.addEventListener('keydown', function(evt) {
 	let keyCode = evt.keyCode;
 	player.handleInput(keyCode);
 }, false);
+
 
 
 
