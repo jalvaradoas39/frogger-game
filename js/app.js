@@ -125,7 +125,28 @@ Player.prototype.handleInput = function(keyCode) {
 
 
 
+// ****** GAME ******
 
+// constructor
+var Game = function() {
+
+};
+
+Game.prototype.reset = function() {
+	// clear enemies array
+	allEnemies = [];
+
+	// reset player position
+	player.x = 200;
+	player.y = 400;
+
+	// hide modal
+	modalContainer.classList.remove('show');
+	modalContainer.classList.add('hide');
+
+};
+
+let game = new Game();
 
 
 
@@ -177,6 +198,7 @@ document.addEventListener('keydown', function(evt) {
 	player.handleInput(keyCode);
 }, false);
 
+document.getElementById('modal-close').addEventListener('click', game.reset, false);
 
 
 
