@@ -155,7 +155,6 @@ let game = new Game();
 
 
 
-
 // ****** CREATE OBJECTS ******
 
 // create Player object
@@ -179,10 +178,10 @@ setInterval(function() {
 	// select random value from enemyYPos array
 	let randY = enemyYPos[ Math.floor((Math.random() * enemyYPos.length)) ];
 	// create enemies
-	let enemy = new Enemy('images/enemy-bug.png', -140, randY, 90);
+	let enemy = new Enemy('images/enemy-bug.png', -140, randY, Math.floor((Math.random() * 200) + 90) );
 	// add enemies to allEnemies array
 	allEnemies.push(enemy);
-}, 4000);
+}, 2000);
 
 
 

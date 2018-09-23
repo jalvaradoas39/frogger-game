@@ -30,14 +30,18 @@
 
 .modal-title {
 	text-align: center;
+	margin-top: 6px;
+	margin-bottom: 6px;
 }
 
 #modal-close {
-
+	font-size: 1.5em;
+	float: right;
 }
 
 #modal-message {
 	text-align: center;
+	font-size: 1.5em;
 }
 
 .hide {
