@@ -146,8 +146,6 @@ Game.prototype.reset = function() {
 
 };
 
-let game = new Game();
-
 
 
 
@@ -182,6 +180,10 @@ setInterval(function() {
 	// add enemies to allEnemies array
 	allEnemies.push(enemy);
 }, 2000);
+
+
+// create Game object
+let game = new Game();
 
 
 
